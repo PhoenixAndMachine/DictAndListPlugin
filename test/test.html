@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TEST FOR DICT LIST PLUGIN</title>
+    <link rel='stylesheet' href='./css/bootstrap.min.css'/>
+  </head>
+  <body>
+    <div class="span8">
+      <form id="test_form" action="." method="POST">
+        <div class="list" options="A,B,C,D" name="testlist" data="['A','B','C']"></div>
+        <div class="dict" k_options="m1,m2,m3,m4" v_options="1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0", 
+            name="testdict" data="{'m1': 4.0, 'm2': 3.5}">
+        </div>
+        <div class="list" name="testlist1" data="['A','B','C']"></div>
+        <div class="dict" name="testdict1" data="{'m1': 4.0, 'm2': 3.5}">
+        </div>
+
+        <button type="submit" class="btn">Confirm</button>
+      </form>
+    </div>  
+    <script src="./js/jquery.js"></script>
+    <script src="./js/underscore-min.js"></script>
+    <script src="./js/backbone-min.js"></script>
+
+    <script src="./js/list_dict.js"></script>
+    <script src="./js/test.js"></script>
+
+  </body>
+</html>
