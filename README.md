@@ -1,7 +1,8 @@
 DictAndListPlugin
 =================
 
-It is a plugin for editable Dict and List html, their values can be attached into form when jQuery post.
+It is a plugin for editable Dict and List html, their values can be attached into form as stringifyJSON 
+when jQuery post.
 
 List
 ----
@@ -39,7 +40,7 @@ $("#create_taste_form").submit(function(event) {
 If you want to have an editable list with initial list, you can define as
 
 ```
-<div class="list" name="movie" data="movie_1_name, movie_2_name, .."></div>
+<div class="list" name="movie" data="['movie_1_name', 'movie_2_name', ..]"></div>
 ```
 
 If you want to constrain the element value in the list, you can define as
