@@ -22,7 +22,7 @@ $(function() {
 
 	var ITEM_TEMPLATE =
 		'<li class="row">' +
-			'<span class="span1 ITEM_KEY" key=<%- key %>><%- key %></span><span class="span1">:</span><span class="span1 ITEM_VALUE"><%- value %></span>' +
+			'<span class="span1 ITEM_KEY" key="<%- key %>"><%- key %></span><span class="span1">:</span><span class="span1 ITEM_VALUE"><%- value %></span>' +
 			'<a class="span1 DESTORY icon-trash"></a>'
 		'</li>';
 
@@ -61,7 +61,7 @@ $(function() {
 				k_options_value = k_options.split(",");
 				for(var i=0, length=k_options_value.length; i<length; i++) {
 					k_field = k_field + 
-						'<option value=' + k_options_value[i] + '>' + k_options_value[i] + '</option>'
+						'<option value="' + k_options_value[i] + '">' + k_options_value[i] + '</option>'
 				}
 				k_field = k_field + '</select>';
 			}
@@ -72,7 +72,7 @@ $(function() {
 				v_options_value = v_options.split(",");
 				for(var i=0, length=v_options_value.length; i<length; i++) {
 					v_field = v_field + 
-						'<option value=' + v_options_value[i] + '>' + v_options_value[i] + '</option>'
+						'<option value="' + v_options_value[i] + '">' + v_options_value[i] + '</option>'
 				}
 				v_field = v_field + '</select>';
 			}
@@ -90,7 +90,7 @@ $(function() {
 
 		add_to_item: function(k,v) {
 			if(this.value[k]!==undefined) {
-				var deleted_item = this.$(".ADDED_ITEMS_CONTAINER ul .ITEM_KEY[key="+ k + "]").parent("li");
+				var deleted_item = this.$(".ADDED_ITEMS_CONTAINER ul .ITEM_KEY[key='"+ k + "']").parent("li");
 				$(deleted_item).remove();
 			}
 			this.value[k] = v;
@@ -173,7 +173,7 @@ $(function() {
 				options = options.split(",");
 				var options_html = ['<select class="ITEM">'];
 				options.forEach(function(v) {
-					options_html.push('<option value=' + v + '>' + v + '</option>');
+					options_html.push('<option value="' + v + '">' + v + '</option>');
 				});
 				options_html.push('</select>');
 				options_html = options_html.join("");
