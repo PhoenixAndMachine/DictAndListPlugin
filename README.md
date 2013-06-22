@@ -15,11 +15,27 @@ There are two files in this plugin, **list_dict.js** and **list_dict_recursive.j
 	elements in them.
 
 ```
-1. Element in list can be of the type: boolean, int, float, string, enum, dict.
-2. Key in item of dict can be of the type: boolean, int, float, string, enum, but since it is the key in dict, 
-	it will be always converted into string.
-3. Value in item of dict can be of the type: boolean, int, float, string, enum, list.
-
+1. Element in list can be of the type: 
+	* boolean
+	* int 
+	* float
+	* string
+	* enum (with type as well)
+	* dict
+2. Key in item of dict can be of the type: 
+	* boolean
+	* int
+	* float
+	* string
+	* enum
+	but since it is the key in dict, it will be always converted into string.
+3. Value in item of dict can be of the type: 
+	* boolean
+	* int
+	* float
+	* string
+	* enum
+	* list
 ```
 
 list_dict.js
