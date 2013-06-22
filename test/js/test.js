@@ -1,4 +1,4 @@
-$("#test_form").submit(function(event) {
+$("#full_form").submit(function(event) {
 	event.preventDefault();
 	var form = $(event.currentTarget);
 	console.log("POST VALUE")

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TEST FOR DICT LIST PLUGIN</title>
+    <link rel='stylesheet' href='./css/bootstrap.min.css'/>
+  </head>
+  <body>
+    <div class="span8">
+      <form id="full_form" action="." method="POST">
+
+        <div class="list" element_class="boolean" name="boolean_list" data="[true, false]"></div>
+
+        <div class="list" element_class="int" name="int_list" data="[1,2,3]"></div>
+
+        <div class="list" element_class="float" name="float_list" data="[0.1,-0.1,100.1]"></div>
+
+
+        <div class="list" element_class="string" name="string_list" data="['hello', 'well', 'what']"></div>
+
+        <div class="list" element_class="enum" name="enum_list_boolean" options="{true:1,false:0}" enum_value_type="boolean" data="[1,0,1]"></div>
+
+        <div class="list" element_class="enum" name="enum_list_int" options="[1,2,3]" enum_value_type="int" data="[3,1,2,1,2]"></div>
+
+        <div class="list" element_class="enum" name="enum_list_float" options="[0.0001,0.0002,-0.001]" enum_value_type="float" data="[0.0001,-0.001,0.0002]"></div>
+
+        <div class="list" element_class="enum" name="enum_list_string" options="['you', 'I','he']" enum_value_type="string" data="['I', 'he']"></div>
+
+
+        <div class="list" element_class="dict" name="dict_list"
+            data="[{'english':[{1:'one', 2:'two'},{3:'three',4:'four'}],
+                'spanish':[{1:'uno', 2:'dos'},{3:'tres'}]}, 
+                {'english':[{5:'five'}], 'spanish':[{5:'cinco'}]}]">
+            <div class="dict_info" k_class="int" v_class="list" v_element_class="dict"></div>
+        </div>
+
+        <div class="list" name="general_list" data="['hello',1,'two', -0.1]"></div>
+
+        <div class="dict" k_class="boolean" v_class="boolean" name="boolean_boolean_dict" data="{true:true, false:false}"></div> 
+
+        <div class="dict" k_class="boolean" v_class="int" name="boolean_int_dict"
+        data="{true:2, false:4}">
+        </div> 
+
+
+        <div class="dict" k_class="boolean" v_class="float" name="boolean_float_dict"
+        data="{true:0.01, false:-0.001}"></div> 
+
+        <div class="dict" k_class="boolean" v_class="string" name="boolean_string_dict" data="{true: 'yes,we love it', false:'no,we don\'t like it'}"></div> 
+
+        <div class="dict" k_class="boolean" v_class="enum" v_options="[1,2,3,4]" name="boolean_enum_dict" data="{true:1, false:3}"></div> 
+
+
+        <div class="dict" k_class="boolean" v_class="list" name="boolean_list_dict"
+            data="{true:[{1:-1,2:-2},{3:-3,4:-4}], false:[{1:1,2:2},{3:3,4:4}]}">
+            <div class="list_info" element_class="dict" k_class="int" v_class="int">
+            </div>
+        </div> 
+
+
+        <div class="dict" k_class="int" v_class="boolean" name="int_boolean_dict"
+            data="{1:true, 2:false, 3:true}">
+        </div> 
+
+        <div class="dict" k_class="int" v_class="int" name="int_int_dict"
+            data="{'-1':1, '-2':2}"></div> 
+
+        <div class="dict" k_class="int" v_class="float" name="int_float_dict"
+            data="{1:0.001, '-1':-0.001}"></div> 
+   
+        <div class="dict" k_class="int" v_class="string" name="int_string_dict"
+            data="{1:'hello', 2:'world'}"></div> 
+   
+        <div class="dict" k_class="int" v_class="enum" v_options="[1,2,3]" name="int_enum_dict" data="{1:2, 2:3}"></div> 
+
+
+
+        <div class="dict" k_class="int" v_class="list" name="int_list_dict"
+            data="{1:[true,false,true], '-1':[true,false]}">
+            <div class="list_info" element_class="boolean"></div>
+
+        </div> 
+ 
+
+        <div class="dict" k_class="float" v_class="boolean" name="float_boolean_dict"
+            data="{0.001:true,'-0.001':false}"></div> 
+
+
+        <div class="dict" k_class="float" v_class="int" name="float_int_dict"
+            data="{0.001:1, '-0.001':2}"></div> 
+
+        <div class="dict" k_class="float" v_class="float" name="float_float_dict"
+            data="{0.01:0.002, '-0.01':-0.002}"></div>
+
+
+        <div class="dict" k_class="float" v_class="string" name="float_string_dict"
+            data="{0.001: 'positive', '-0.001':'negative'}"></div> 
+
+        <div class="dict" k_class="float" v_class="enum" name="float_enum_dict" v_options="[1,2,3,4]" data="{0.001:1, '-0.001':4}"></div>
+
+
+        <div class="dict" k_class="float" v_class="list" name="float_list_dict"
+            data="{0.001:[true,false], '-0.001':[false,false]}">
+            <div class="list_info" element_class="boolean"></div>
+        </div>
+
+        <div class="dict" k_class="enum" v_class="boolean" name="enum_boolean_dict" k_options="[1,2,3]" data="{1:true,3:true}"></div> 
+
+
+        <div class="dict" k_class="enum" v_class="int" name="enum_int_dict" k_options="[1,'hello',0.001]" data="{1:100,'hello':2}"></div> 
+
+
+        <div class="dict" k_class="enum" v_class="float" name="enum_float_dict" k_options="[1,2,3]" data="{1:0.02001, 3:-0.0102}"></div>
+
+
+        <div class="dict" k_class="enum" v_class="string" name="enum_string_dict" k_options="[2,3,5,1]" data="{3:'three', 5:'five'}"></div> 
+
+
+        <div class="dict" k_class="enum" v_class="enum" name="enum_enum_dict" k_options="[9,8,7,1]" v_options="[-9,-8,-7,-1]" data="{8:-8, 7:-7}"></div>
+
+        <div class="dict" k_class="enum" v_class="list" name="enum_list_dict" k_options="[1,2,3]" data="{1:[{10:0.001,20:0.20},{'-1':-0.001}],2:[{1:-0.0123},{2:-0.89,3:-0.312}]}">
+            <div class="list_info" element_class="dict" k_class="int" v_class="float"></div>
+        </div> 
+
+        <button type="submit" class="btn">Confirm</button>
+      </form>
+    </div>  
+    <script src="./js/jquery.js"></script>
+    <script src="./js/underscore-min.js"></script>
+    <script src="./js/backbone-min.js"></script>
+
+    <script src="./js/list_dict_recursive.js"></script>
+    <script src="./js/test.js"></script>
+
+  </body>
+</html>

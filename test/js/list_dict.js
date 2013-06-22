@@ -148,6 +148,7 @@ $(function() {
 		},
 
 		initialize: function() {
+			this.element_type = $(this.el).attr("element_class") || "general";
 			this.INITIAL_TEMPLATE = this.generate_initial_template();
 			$(this.el).append(_.template(this.INITIAL_TEMPLATE));
 			var data = $(this.el).attr("data");
@@ -164,6 +165,8 @@ $(function() {
 		},
 
 		generate_initial_template: function() {
+
+			/* check the element type to decide which input to use */
 			var INITIAL_TEMPLATE = '<div class="input-append CREATION_CONTAINER">' +
   				'<input class="ITEM" type="text">' + 
   				'<button class="btn ADD_TO_LIST" type="button">Add</button>' +
