@@ -1,16 +1,34 @@
 DictAndListPlugin
 =================
 
-It is a plugin for editable Dict and List html, their values can be attached into form as stringifyJSON 
-when jQuery post.
+It is a plugin for editable Dict and List html, their values can be attached into form as stringified JSON 
+when processing jQuery post.
 
-It is written in backbonejs, so when you use list_dict.js, **jquery.js**, **backbone.js**, **underscore.js**
-are necessary.
+It is written in backbonejs, so when you use list_dict.js, list_dict_recursive.js, **jquery.js**, **backbone.js**, 
+**underscore.js** are necessary.
 
-List
-----
+There are two files in this plugin, **list_dict.js** and **list_dict_recursive.js**.
 
-###Example###
+1. Using list_dict.js, you can define list and dict without clarifying the type of the elements in them, it simply
+	considers all the value as string.
+2. Using list_dict_recursive.js. you can define list and dict recursively and also with clarification of the type of 
+	elements in them.
+
+```
+1. Element in list can be of the type: boolean, int, float, string, enum, dict.
+2. Key in item of dict can be of the type: boolean, int, float, string, enum, but since it is the key in dict, 
+	it will be always converted into string.
+3. Value in item of dict can be of the type: boolean, int, float, string, enum, list.
+
+```
+
+list_dict.js
+------------
+
+###List###
+
+
+####Example####
 ```
 <form id="create_taste_form" action="/create_taste" method="POST">
   <input type="text" name="user"/>
@@ -53,10 +71,10 @@ If you want to constrain the element value in the list, you can define as
 ```
 Then it is a select field, you only can select the value from the drop-down.
 
-Dict
-----
+###Dict###
 
-###Example###
+
+####Example####
 
 ```
 <form id="rank_movies_form" action="/rank_movies" method="POST">
@@ -106,4 +124,37 @@ If you want to constrain the key or value in the dict, you can define as
 When **k_options**, **v_options** is defined, the k field or v field is select, you only can select values from
 these constrains.
 
+list_dict_recursive.js
+----------------------
+There are two advantages of list_dict_recursive.js
+
+1. Clarify the type of elements in list or dict
+2. Define list and dict recursively
+
+You can find complete examples in [list_dict_recursive.html](https://github.com/PhoenixAndMachine/DictAndListPlugin/blob/master/test/test_recursive.html).
+Here, we emphasis on the feature 2: Recursion.
+
+```
+<div class="list" element_class="dict" name="lang_explain"
+     data="[
+     	{	'features':[{'meaning':'m1','pos':'verb'}],
+     		'examples':[{'ex':'ex1', 'ex_tr':'ex1 translation'},{'ex':'ex2', 'ex_tr':'ex2 translation'}]
+     	}, 
+     	{	'features':['menaing':'m2','pos':'noun'}],
+     		'examples':[{'ex':'ex1', 'ex_tr':'ex1 translation'}]
+     	}]"
+     >
+     <div class="dict_info" k_class="string" v_class="list" v_element_class="dict"></div>
+</div>
+```
+This piece of code illustrates several points here:
+
+1. A list is called **lang_explain**;
+2. Each element of this list stores a dict, which is coded as `element_class="dict"`;
+3. Each dict takes a string as its key and a list as its value, which is coded as `k_class="string" v_class="list"`;
+4. The value stores a list of dict, which is coded as `v_element_class="dict"`;
+5. `data` stores the existing data in this plugin, practically, it stores the data fecth from database.
+
+If you have problems to understand this, in the test suit, there is a full package of example you can play with.
+PS: By using console in browser, you can see the post data.
 
