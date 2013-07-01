@@ -132,8 +132,18 @@ $(function() {
 			"' name='" + configuration['element_name'] + "'>");
 		if(configuration["element_class"] === "dict") {
 			k_class = configuration["k_class"];
+			k_options = configuration["k_options"];
 			v_class = configuration["v_class"];
-			html.push("<div class='dict_info' k_class='" + k_class + "' v_class='" + v_class + "'></div>");
+			v_options = configuration["v_options"];
+			var embed_dict_info = "<div class='dict_info' k_class='" + k_class + "' v_class='" + v_class + "'";
+			if(k_options) {
+				embed_dict_info = embed_dict_info + " k_options=" + k_options;
+			}
+			if(v_options) {
+				embed_dict_info = embed_dict_info + " v_options=" + v_options;
+			}
+			embed_dict_info = embed_dict_info + " ></div>";
+			html.push(embed_dict_info);
 		}
 		html.push("</div>");
 		return html.join("");
@@ -142,10 +152,21 @@ $(function() {
 	generate_dict_field_html = function(configuration) {
 		var k_class = configuration["k_class"] || "string";
 		var v_class = configuration["v_class"] || "string";
-
+		var k_options = configuration["k_options"];
+		var v_options = configuration["v_options"];
 		var html = [];
-		html.push("<div class='dict embed' k_class='" + k_class +
-			"' v_class='" + v_class + "' name='" + configuration["element_name"] + "'>");
+		var embed_dict = "<div class='dict embed' k_class='" + k_class +
+			"' v_class='" + v_class + "' name='" + configuration["element_name"] + "'"
+		if(k_options) {
+			embed_dict = embed_dict + " k_options=" + k_options;
+		}
+		if(v_options) {
+			embed_dict = embed_dict + " v_options=" + v_options;
+		}
+		embed_dict = embed_dict + ">";
+
+		html.push(embed_dict);
+		
 		if(v_class==="list")
 			html.push("<div class='list_info' element_class='" + 
 				configuration["list_element_class"] + "'></div>");
@@ -204,7 +225,8 @@ $(function() {
 
 	var ITEM_CONTAINER =
 		'<li class="row">' +
-			'<span class="span1 ITEM_KEY" key="<%- key %>"><%- key %></span><span class="span1">:</span><span class="span1 ITEM_VALUE"><%- value %></span>' +
+			'<span class="span1 ITEM_KEY" key="<%- key %>"><%- key %></span>' +
+			'<span class="span1">:</span><span class="span2 ITEM_VALUE"><%- value %></span>' +
 			'<a class="span1 DESTORY icon-trash"></a>'
 		'</li>';
 
@@ -265,11 +287,16 @@ $(function() {
 				var list_info = $(this.el).find(".list_info");
 				this.v_configuration["element_class"] = (list_info && list_info.attr("element_class")) || "string";
 				this.v_configuration["html_type"] = "list_field";
-				if(this.v_configuration["element_class"]==="dict")
+				if(this.v_configuration["element_class"]==="dict") {
 					this.v_configuration["k_class"] = 
 						(list_info && list_info.attr("k_class")) || "string";
+					this.v_configuration["k_options"] = 
+						(list_info && list_info.attr("k_options"));
 					this.v_configuration["v_class"] =
-						(list_info && list_info.attr("v_class")) || "string"; 
+						(list_info && list_info.attr("v_class")) || "string";
+					this.v_configuration["v_options"] = 
+						(list_info && list_info.attr("v_options"));
+				}
 			}
 
 			/*
@@ -408,7 +435,7 @@ $(function() {
 				this.v_field, 
 				this.v_configuration["html_type"],
 				this.v_class!=="string" && this.v_class!=="list");
-			if(k!==undefined&&v!==undefined) {
+			if(k!==undefined&&v!==undefined&&k!=="") {
 				this.add_to_item(k,v);
 			}
 
@@ -504,6 +531,8 @@ $(function() {
 				var dict_info = $(this.el).find(".dict_info");
 				this.configuration["k_class"] = (dict_info && dict_info.attr("k_class")) || "string";
 				this.configuration["v_class"] = (dict_info && dict_info.attr("v_class")) || "string";
+				this.configuration["k_options"] = (dict_info && dict_info.attr("k_options"));
+				this.configuration["v_options"] = (dict_info && dict_info.attr("v_options"));
 				if(this.configuration["v_class"]==="list")
 					this.configuration["list_element_class"] = 
 						(dict_info && dict_info.attr("v_element_class")) || "string";
@@ -540,7 +569,7 @@ $(function() {
 			*/
 
 			var data = $(this.el).attr("data");
-			if(data===undefined)
+			if(data===undefined || data==="")
 				this.value = [];
 			else {
 				this.value = eval("(" + data +")");
@@ -627,7 +656,7 @@ $(function() {
 				|| (this.element_class!=="enum" && this.element_class!=="string" && this.element_class!=="dict");
 			item_content = get_value_from_dom(
 				this.ELEMENT_EDIT_FIELD, html_type, eval_or_not);
-			if(item_content!=="") {
+			if(item_content!=="" && item_content!==undefined) {
 				this.addItem(item_content);
 				clean_value_of_dom(this.ELEMENT_EDIT_FIELD, html_type);
 				this.clean_embed_value();
