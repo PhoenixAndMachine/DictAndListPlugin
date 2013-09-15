@@ -4,6 +4,8 @@ DictAndListPlugin
 It is a plugin for editable Dict and List html, their values can be attached into form as stringified JSON 
 when processing jQuery post.
 
+View Demo in: http://dict-and-list.appspot.com/
+
 It is written in backbonejs, so when you use list_dict.js, list_dict_recursive.js, **jquery.js**, **backbone.js**, 
 **underscore.js** are necessary.
 
